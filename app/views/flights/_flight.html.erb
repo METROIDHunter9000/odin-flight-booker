@@ -1,0 +1,12 @@
+<h3><%= flight.origin.code %> -&gt; <%= flight.destination.code %></h3>
+  <ul>
+    <li>Departs from <%= flight.origin.code %> on <%= flight.departure %></li>
+    <li>Arrives at <%= flight.destination.code %> on <%= flight.arrival %></li>
+    <li>
+    <% if flight.passengers.length == 1 %>
+      <%= flight.passengers.length %> person has booked this flight
+    <% else %>
+      <%= flight.passengers.length %> people have booked this flight
+    <% end %>
+    </li>
+  </ul>

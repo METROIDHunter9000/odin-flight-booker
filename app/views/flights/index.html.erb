@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag "simple" %>
+<h1>Search for a flight to book</h1>
+
+<%= form_with url: flights_path, method: :get do |form| %>
+  <%= form.label :origin_airport_id, "Origin airport" %>
+  <%= form.select(:origin_airport_id, @airport_options) %>
+  <%= form.label :destination_airport_id, "Destination airport" %>
+  <%= form.select(:destination_airport_id, @airport_options) %>
+  <%= form.label :departure, "Departure Date" %>
+  <%= form.select(:departure, @departure_options) %>
+  <%= form.label :max_passengers, "Max passengers" %>
+  <%= form.number_field :max_passengers %>
+  <%= form.submit "Search" %>
+<% end %>
+<a href="/flights">Reset search &amp; view all flights</a>
+
+<% flash.each do |type, msg| %>
+  <div class="notice <%= type %>">
+    <% msg.split("\n").each do |s| %>
+      <h5><%= s %></h5>
+    <% end %>
+  </div>
+<% end %>
+<% if @flights.length > 0 %>
+  <%= form_with url: new_booking_path, method: :get do |form| %>
+    <!-- Convenience method for radio buttons which does not wrap them in <li>
+    <%# form.collection_radio_buttons :flight_id, @flights, :id, -> (flight) {"Helo I am a flight"} %>
+    -->
+    <ul>
+      <% @flights.each do |flight| %>
+        <li>
+          <%= form.radio_button :flight_id, flight.id, required: true %>
+          <%= form.label "flight_id_#{flight.id}", flight.summary %>
+        </li>
+      <% end %>
+    </ul>
+    <%= form.submit "Book this flight" %>
+  <% end %>
+<% else %>
+  <p>No flights found by the specified parameters</p>
+<% end %>
