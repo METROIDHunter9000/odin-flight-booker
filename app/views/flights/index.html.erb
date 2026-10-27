@@ -1,15 +1,22 @@
-<%= stylesheet_link_tag "simple" %>
 <h1>Search for a flight to book</h1>
 
 <%= form_with url: flights_path, method: :get do |form| %>
-  <%= form.label :origin_airport_id, "Origin airport" %>
-  <%= form.select(:origin_airport_id, @airport_options) %>
-  <%= form.label :destination_airport_id, "Destination airport" %>
-  <%= form.select(:destination_airport_id, @airport_options) %>
-  <%= form.label :departure, "Departure Date" %>
-  <%= form.select(:departure, @departure_options) %>
-  <%= form.label :max_passengers, "Max passengers" %>
-  <%= form.number_field :max_passengers %>
+  <div class="form-field">
+    <%= form.label :origin_airport_id, "Origin airport" %>
+    <%= form.select(:origin_airport_id, @airport_options) %>
+  </div>
+  <div class="form-field">
+    <%= form.label :destination_airport_id, "Destination airport" %>
+    <%= form.select(:destination_airport_id, @airport_options) %>
+  </div>
+  <div class="form-field">
+    <%= form.label :departure, "Departure Date" %>
+    <%= form.select(:departure, @departure_options) %>
+  </div>
+  <div class="form-field">
+    <%= form.label :max_passengers, "Max passengers" %>
+    <%= form.number_field :max_passengers %>
+  </div>
   <%= form.submit "Search" %>
 <% end %>
 <a href="/flights">Reset search &amp; view all flights</a>
@@ -26,14 +33,18 @@
     <!-- Convenience method for radio buttons which does not wrap them in <li>
     <%# form.collection_radio_buttons :flight_id, @flights, :id, -> (flight) {"Helo I am a flight"} %>
     -->
-    <ul>
-      <% @flights.each do |flight| %>
-        <li>
-          <%= form.radio_button :flight_id, flight.id, required: true %>
-          <%= form.label "flight_id_#{flight.id}", flight.summary %>
-        </li>
-      <% end %>
-    </ul>
+    <div class="flight-select">
+      <ul>
+        <% @flights.each do |flight| %>
+          <div class="flight-card">
+            <li>
+              <%= form.radio_button :flight_id, flight.id, required: true %>
+              <%= form.label "flight_id_#{flight.id}", flight.summary %>
+            </li>
+          </div>
+        <% end %>
+      </ul>
+    </div>
     <%= form.submit "Book this flight" %>
   <% end %>
 <% else %>

@@ -23,12 +23,15 @@
   </head>
 
   <body>
-    <%= yield %>
-
+    <header>
+      <h1>ODIN Airlines</h1>
+    </header>
+    <div id="app">
+      <%= yield %>
+    </div>
     <footer>
       <p>Flight Booker</p>
       <a target="_blank" href="https://www.theodinproject.com/lessons/ruby-on-rails-flight-booker">The Odin Project</a>
-      <p>Styling based on <a target="_blank" href="https://simplecss.org">SimpleCSS</a></p>
     </footer>
   </body>
 </html>

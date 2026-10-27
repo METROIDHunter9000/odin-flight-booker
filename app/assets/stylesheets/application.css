@@ -8,7 +8,147 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
-.notice.error, .notice.alert {
-  background: #d81b60;
+
+* {
+  font-family: "Arial", sans-serif;
+  font-size: 1.15rem;
 }
 
+:root {
+  --bg: #cccccc;
+  --bg2: #939393;
+  --fg: #111111;
+  --emphasis: #145AFF;
+  --error: #D01010;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1C1C22;
+    --bg2: #34345E;
+    --fg: #cccccc;
+    --emphasis: #B1910F;
+    --error: #B02020;
+  }
+}
+
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.4rem;
+}
+h3 {
+  font-size: 2.0rem;
+}
+h4 {
+  font-size: 1.6rem;
+}
+h5 {
+  font-size: 1.3rem;
+}
+a {
+  color: var(--emphasis);
+}
+input, select {
+  background-color: var(--bg2);
+  color: var(--fg2);
+  border-style: none;
+  padding: 6px;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  align-items: center;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  background-color: var(--bg2);
+  box-shadow: 2px 2px 3px #0000009A;
+}
+
+#app {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--bg2);
+  box-shadow: 2px 2px 3px #0000009A;
+  padding-bottom: 8px;
+}
+
+.passenger-form {
+  display: flex;
+  flex-direction: column;
+}
+
+form[action="/bookings"]{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form[action="/flights"]{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+form[action="/flights"] input[type="submit"]{
+  align-self: end;
+}
+
+form > * {
+  margin: 4px;
+  padding: 4px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.form-field > * {
+  flex-basis: 1
+}
+
+input[type="submit"] {
+  background-color: var(--emphasis);
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--bg);
+  cursor: pointer;
+}
+
+.flight-card {
+  border: 2px solid var(--fg);
+  background-color: var(--bg2);
+  margin: 8px;
+}
+.flight-card:hover {
+  cursor: pointer;
+  background-color: var(--emphasis);
+}
+.notice {
+  background-color: var(--error);
+  color: white;
+  padding: 0 16px;
+  border-radius: 1.15rem;
+}

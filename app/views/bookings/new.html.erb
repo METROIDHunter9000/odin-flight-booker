@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag "simple" %>
 <h1>Book a flight</h1>
 
 <% flash.each do |type, msg| %>
@@ -9,16 +8,21 @@
   </div>
 <% end %>
 <% if @flight %>
+  <%= render @flight %>
   <%= form_with model: @booking do |form| %>
-    <h2><%= @flight.summary %></h2>
-    <%= render @flight %>
+    <%= form.hidden_field :flight_id, value: @flight.id %>
     <%= form.fields_for :passengers, include_id: false do |form_passenger| %>
-      <h5>Passenger (leave blank if not applicable)</h5>
-      <%= form.hidden_field :flight_id, value: @flight.id %>
-      <%= form.label :name %>
-      <%= form_passenger.text_field :name %>
-      <%= form.label :email, "Primary contact email" %>
-      <%= form_passenger.email_field :email %>
+      <div class="passenger-form">
+        <h5>Passenger (leave blank if not applicable)</h5>
+        <div class="form-field">
+          <%= form_passenger.label :name %>
+          <%= form_passenger.text_field :name %>
+        </div>
+        <div class="form-field">
+          <%= form_passenger.label :email, "Primary contact email" %>
+          <%= form_passenger.email_field :email %>
+        </div>
+      </div>
     <% end %>
     <%= form.submit "Book this flight" %>
   <% end %>
