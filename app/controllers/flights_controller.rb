@@ -36,6 +36,12 @@ class FlightsController < ApplicationController
         [ date, date ]
       } .uniq
     @departure_options.insert(0, [ "Any", "any" ])
+
+    respond_to do |format|
+      format.html
+      format.xml  { render xml: @flights }
+      format.json  { render json: @flights.as_json(include: { bookings: { include: :passengers } }) }
+    end
   end
 
   def show
