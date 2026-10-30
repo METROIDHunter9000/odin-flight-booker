@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
     b = Booking.new(booking_params)
 
     if b.save
+      b.passengers.each { |p| PassengerMailer.with(passenger: p).flight_booked_email.deliver_later }
       flash.notice = "Successfully booked flight from #{b.flight.origin.code} to #{b.flight.destination.code} for #{b.passengers.length} #{b.passengers.length > 1 ? 'people' : 'person'}!"
       redirect_to flights_path
     else

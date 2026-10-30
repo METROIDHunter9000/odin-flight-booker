@@ -1,0 +1,11 @@
+========== You're on your way! ==========
+
+Greetings <%= @passenger.name %>! You're receiving this
+email because your flight has been booked:
+
+  - From: <%= @passenger.flight.origin.code %>
+  - To: <%= @passenger.flight.destination.code %>
+  - When: <%= @passenger.flight.departure %>
+
+=== Thanks for flying with ODIN airlines! ===
+<%= flights_url %>

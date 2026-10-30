@@ -33,3 +33,7 @@
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Ignore credentials file. It may be encrypted, but it defines environment-specific configuration
+# and so it should not be version-controlled.
+/config/credentials.yml.enc
+

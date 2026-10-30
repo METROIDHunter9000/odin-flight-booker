@@ -1,0 +1,14 @@
+<h1>You're on your way!</h1>
+
+<p>
+  Greetings <%= @passenger.name %>! You're receiving this
+  email because your flight has been booked:
+</p>
+<ul>
+  <li>From: <%= @passenger.flight.origin.code %></li>
+  <li>To: <%= @passenger.flight.destination.code %></li>
+  <li>When: <%= @passenger.flight.departure %></li>
+</ul>
+<h3>
+  Thanks for flying with <a href="<%= flights_url %>">ODIN airlines!</a>
+</h3>
