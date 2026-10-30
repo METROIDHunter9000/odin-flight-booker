@@ -93,15 +93,3 @@ ssh_to_sex = Flight.find_or_create_by!({
   departure: '2026-10-24 01:00:00',
   arrival: '2026-10-24 09:30:00'
 })
-
-bk_aal_to_tyl = Booking.find_or_create_by!({flight: aal_to_tyl})
-bk2_aal_to_tyl = Booking.create({flight: aal_to_tyl})
-bk_zrh_to_sex = Booking.find_or_create_by!({flight: zrh_to_sex})
-bk_sex_to_ssh = Booking.find_or_create_by!({flight: sex_to_ssh})
-
-Passenger.find_or_create_by!({name: "George Washington", email: "abc@gmail.com", booking_id: bk_aal_to_tyl.id})
-Passenger.find_or_create_by!({name: "Martha Washington", email: "bcd@gmail.com", booking_id: bk_aal_to_tyl.id})
-Passenger.find_or_create_by!({name: "Ludwig Von Beethoven", email: "beets@gmail.com", booking_id: bk2_aal_to_tyl.id})
-Passenger.find_or_create_by!({name: "Martha Washington", email: "bcd@gmail.com", booking_id: bk_zrh_to_sex.id})
-Passenger.find_or_create_by!({name: "Jake StateFarm", email: "jake@statefarm.com", booking_id: bk_sex_to_ssh.id})
-Passenger.find_or_create_by!({name: "Barrack Hussein Obama", email: "itsobama@hotmail.com", booking_id: bk_sex_to_ssh.id})
